@@ -1,6 +1,6 @@
 # SymbolMath
 
-SymbolMath is a small math experiment using Ruby 2.0+
+SymbolMath is a small symbolic math experiment using Ruby 2.0+
 
 ## Examples
 ```ruby
@@ -25,10 +25,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install symbolmath
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
