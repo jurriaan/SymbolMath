@@ -14,12 +14,12 @@ describe SymbolMath::FunctionDefinition do
     build { tanh(x) }.evaluate(x: 1).must_be_within_delta((ex - mex) / (ex + mex), 10**-8)
     build { sin(x) }.evaluate(x: 0).must_be_within_delta(0, 10**-8)
     build { cos(x) }.evaluate(x: 0).must_be_within_delta(1, 10**-8)
-    build { fact(x) }.evaluate(x: 3r / 2).must_be_within_delta(Math.sqrt(Math::PI), 10**-8)
+    build { fact(x) }.evaluate(x: Rational(3,2)).must_be_within_delta(Math.sqrt(Math::PI), 10**-8)
   end
 
   it 'can do complex trigonometric' do
-    build { sin(x) }.evaluate(x: 2i).must_be_within_delta(build { -sin(x) }.evaluate(x: 2i + Math::PI), 10**-8)
-    build { sin(x) }.evaluate(x: 2i).must_be_within_delta(3.6268604i, 10**-8)
+    build { sin(x) }.evaluate(x: Complex(0, 2)).must_be_within_delta(build { -sin(x) }.evaluate(x: Complex(0, 2) + Math::PI), 10**-8)
+    build { sin(x) }.evaluate(x: Complex(0, 2)).must_be_within_delta(Complex(0, 3.6268604), 10**-8)
   end
 
 end

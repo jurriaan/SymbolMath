@@ -7,7 +7,9 @@ describe SymbolMath::CoreRefinements do
   end
 
   it 'should evaluate correctly' do
-    SymbolMath.expr { 3i * x }.evaluate(x: 2i).must_equal(-6)
+    subject = SymbolMath.expr { Complex(0, 3) * x }
+    subject = subject.evaluate(x: Complex(0, 2))
+    subject.must_equal(-6)
   end
 
   it 'should not bother with normal calculations' do

@@ -11,7 +11,7 @@ module SymbolMath
   end
   Function.log.derivative = ->(x) { 1 / x }
   Function.define :cos do |x|
-    x == 0 ? 1r : CMath.cos(x)
+    x == 0 ? Rational(1) : CMath.cos(x)
   end
   Function.cos.derivative = ->(x) { - sin(x) }
   Function.define :tan do |x|

@@ -16,6 +16,8 @@ module SymbolMath
         Symbol[method]
       elsif method == :Deriv
         Derivative.new(*args)
+      elsif %i(Complex BigDecimal Rational).include?(method) # for ruby 2.0
+        ::Kernel.send(method, *args)
       else
         Function.new(method, *args)
       end

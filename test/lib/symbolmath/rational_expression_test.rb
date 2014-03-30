@@ -15,8 +15,8 @@ describe SymbolMath::RationalExpression do
 
   it 'should evaluate equations' do
     s = SymbolMath::Symbol[:a]
-    SymbolMath::RationalExpression.build(5r, s).evaluate(a: 3r).must_equal 5 / 3r
-    SymbolMath::RationalExpression.build(s, 5r).evaluate(a: 3r).must_equal 3 / 5r
+    SymbolMath::RationalExpression.build(Rational(5), s).evaluate(a: Rational(3)).must_equal Rational(5, 3)
+    SymbolMath::RationalExpression.build(s, Rational(5)).evaluate(a: Rational(3)).must_equal Rational(3, 5)
   end
 
   it 'should remove useless symbols' do
@@ -29,7 +29,7 @@ describe SymbolMath::RationalExpression do
 
   it 'should differentiate correctly' do
     s = SymbolMath::Symbol[:a]
-    SymbolMath::RationalExpression.build(s, 5r).fdiff(:a).must_equal 1 / 5r
+    SymbolMath::RationalExpression.build(s, Rational(5)).fdiff(:a).must_equal Rational(1, 5)
     SymbolMath::RationalExpression.build(s**2 + 3, s).must_equal build { (3 + a**2) / a }
   end
 end

@@ -28,7 +28,7 @@ module SymbolMath
           expression = ProductExpression.build(*element.elements[1..-1])
           group[expression] += element.elements.first
         elsif element.is_a?(RationalExpression)
-          group[1r / element.y] += element.x
+          group[Rational(1) / element.y] += element.x
         else
           group[element] += 1
         end

@@ -28,7 +28,7 @@ describe SymbolMath::Expression do
     subject = build { a**b + 3 - a }
     subject.evaluate.must_equal(subject)
     subject = build { abs(3.0 / 2.0 + a) }
-    subject.evaluate(a: 2i).must_equal(2.5)
+    subject.evaluate(a: Complex(0,2)).must_equal(2.5)
     subject.evaluate.must_equal(subject)
     subject = SymbolMath::ExpressionEvaluator.exec_lambda do
       [
@@ -54,7 +54,7 @@ describe SymbolMath::Expression do
         [x**2, 1],
         [4**y, 16],
         [y**x, 2],
-        [x - (y + x) / 5, 2r / 5]
+        [x - (y + x) / 5, Rational(2, 5)]
       ]
     end
 
@@ -62,7 +62,7 @@ describe SymbolMath::Expression do
       expression, result = item
       expression = expression.simplify # Expressions are always simplified before returning
       expression.evaluate.must_equal(expression)
-      expression.evaluate(x: 1r, y: 2r).must_equal(result)
+      expression.evaluate(x: Rational(1), y: Rational(2)).must_equal(result)
     end
 
   end
@@ -80,7 +80,7 @@ describe SymbolMath::Expression do
     d.must_equal(e)
     d.wont_equal(f)
     build { (((a + b) + c) + n) }.must_equal(build { (a + b) + (c + n) })
-    build { x - (y + x) / 5 }.must_equal build { ((4r / 5 * x) + (-1r / 5 * y)) }
+    build { x - (y + x) / 5 }.must_equal build { ((Rational(4,5) * x) + (Rational(-1,5) * y)) }
   end
 
   it 'can compute the series of a given equation' do
@@ -92,9 +92,9 @@ describe SymbolMath::Expression do
 
   it 'should know what is a number and what not' do
     build { log(2) / log(3) }.number?.must_equal true
-    build { (3i) / 2 + sin(a) }.number?.must_equal false
-    build { (3i) / 2 + log(3)  }.number?.must_equal true
-    build { 4r / 2 + log(3) - 3i   }.number?.must_equal true
+    build { Complex(0,3) / 2 + sin(a) }.number?.must_equal false
+    build { Complex(0,3) / 2 + log(3)  }.number?.must_equal true
+    build { Rational(4,2) + log(3) - Complex(0,3) }.number?.must_equal true
   end
 
   it 'should simplify equations' do
