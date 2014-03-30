@@ -1,4 +1,6 @@
-# SymbolMath
+[![Build Status](https://travis-ci.org/jurriaan/SymbolMath.svg?branch=master)](https://travis-ci.org/jurriaan/SymbolMath) [![Coverage Status](https://coveralls.io/repos/jurriaan/SymbolMath/badge.png)](https://coveralls.io/r/jurriaan/SymbolMath)
+
+# SymbolMath 
 
 SymbolMath is a small symbolic math experiment using Ruby 2.0+
 
