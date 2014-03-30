@@ -1,0 +1,5 @@
+# Do not introduce global variables.
+GlobalVars:
+  Enabled: false
+LineLength:
+  Enabled: false
