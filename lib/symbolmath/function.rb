@@ -51,14 +51,12 @@ module SymbolMath
 
     def number?(args = arguments)
       return false if args.empty?
-      args.each { |a| return false unless a.number? }
-      true
+      args.all?(&:number?)
     end
 
     def contains_symbol?(s)
       return true if s == self
-      arguments.each { |a| return true if !a.number? && a.contains_symbol?(s) }
-      false
+      arguments.any? { |a| !a.number? && a.contains_symbol?(s) }
     end
 
     def <=>(other)
@@ -77,7 +75,7 @@ module SymbolMath
       end * arguments.first.fdiff(s)
     end
 
-    def hash
+    def hash # TODO: ugly hack.. fix this
       name.hash ^ arguments.hash
     end
 

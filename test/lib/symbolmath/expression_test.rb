@@ -28,7 +28,7 @@ describe SymbolMath::Expression do
     subject = build { a**b + 3 - a }
     subject.evaluate.must_equal(subject)
     subject = build { abs(3.0 / 2.0 + a) }
-    subject.evaluate(a: Complex(0,2)).must_equal(2.5)
+    subject.evaluate(a: Complex(0, 2)).must_equal(2.5)
     subject.evaluate.must_equal(subject)
     subject = SymbolMath::ExpressionEvaluator.exec_lambda do
       [
@@ -80,21 +80,21 @@ describe SymbolMath::Expression do
     d.must_equal(e)
     d.wont_equal(f)
     build { (((a + b) + c) + n) }.must_equal(build { (a + b) + (c + n) })
-    build { x - (y + x) / 5 }.must_equal build { ((Rational(4,5) * x) + (Rational(-1,5) * y)) }
+    build { x - (y + x) / 5 }.must_equal build { ((Rational(4, 5) * x) + (Rational(-1, 5) * y)) }
   end
 
   it 'can compute the series of a given equation' do
     a = build { sin(x) }
     b = build { x**3 }
-    a.maclaurin(:x, 6).must_equal build { ((x / fact(1)) + (-(x**3) / fact(3)) + ((x**5) / fact(5))) }
+    a.maclaurin(:x, 5).must_equal build { ((x / fact(1)) + (-(x**3) / fact(3)) + ((x**5) / fact(5))) }
     b.taylor(:x, 4, 1).must_equal build { ((1 / fact(0)) + ((-3 + (3 * x)) / fact(1)) + ((6 * ((-1 + x)**2)) / fact(2)) + ((6 * ((-1 + x)**3)) / fact(3))) }
   end
 
   it 'should know what is a number and what not' do
     build { log(2) / log(3) }.number?.must_equal true
-    build { Complex(0,3) / 2 + sin(a) }.number?.must_equal false
-    build { Complex(0,3) / 2 + log(3)  }.number?.must_equal true
-    build { Rational(4,2) + log(3) - Complex(0,3) }.number?.must_equal true
+    build { Complex(0, 3) / 2 + sin(a) }.number?.must_equal false
+    build { Complex(0, 3) / 2 + log(3)  }.number?.must_equal true
+    build { Rational(4, 2) + log(3) - Complex(0, 3) }.number?.must_equal true
   end
 
   it 'should simplify equations' do

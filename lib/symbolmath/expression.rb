@@ -6,17 +6,14 @@ module SymbolMath
     end
 
     def number?
-      elements.reduce(true) { |a, e| a && e.number? }
+      elements.all?(&:number?)
     end
 
     def contains_symbol?(symbol)
-      elements.each do |element|
-        if element.respond_to?(:contains_symbol?) &&
-           element.contains_symbol?(symbol)
-          return true
-        end
+      elements.any? do |element|
+        element.respond_to?(:contains_symbol?) &&
+          element.contains_symbol?(symbol)
       end
-      false
     end
 
     def to_s

@@ -60,19 +60,17 @@ module SymbolMath
 
     def rationalize
       rational = elements.index { |e| e.is_a?(RationalExpression) }
-      if rational
-        rational = elements.delete_at(rational)
-        rational.x *= self
-        @elements = [rational.simplify]
-      end
+      return unless rational
+      rational = elements.delete_at(rational)
+      rational.x *= self
+      @elements = [rational.simplify]
     end
 
     def sumify
       sum = elements.index { |e| e.is_a?(SumExpression) }
-      if sum
-        sum = elements.delete_at(sum)
-        @elements = [SumExpression.build(sum.elements.map { |e| e * self })]
-      end
+      return unless sum
+      sum = elements.delete_at(sum)
+      @elements = [SumExpression.build(sum.elements.map { |e| self * e })]
     end
 
     def group_elements

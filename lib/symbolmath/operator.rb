@@ -18,9 +18,11 @@ module SymbolMath
     end
 
     def inspect
-      "<Operator: #{name}>"
+      "<Operator: #{self}>"
     end
 
-    OPERATORS = %i(** * / + -).each_with_object({}) { |op, h| h[op] = new(op) }
+    OPERATORS = %i(** * / + -).each_with_object({}) do |op, h|
+      h[op] = new(op).freeze
+    end.freeze
   end
 end

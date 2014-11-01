@@ -1,4 +1,5 @@
 module SymbolMath
+  # See http://en.wikipedia.org/wiki/Abelian_group
   class AbelianExpression < Expression
     def self.build(*elements)
       new(elements).simplify
@@ -6,6 +7,7 @@ module SymbolMath
 
     def initialize(elements)
       self.elements = elements
+      super()
     end
 
     def elements=(elements)
@@ -14,8 +16,8 @@ module SymbolMath
 
     def evaluate(**values)
       elements.reduce(identity) do |a, e|
-        res = e.respond_to?(:evaluate) ? e.evaluate(values) : e
-        a.send(operator.name, res)
+        e = e.evaluate(values) if e.respond_to?(:evaluate)
+        a.send(operator.name, e)
       end
     end
 

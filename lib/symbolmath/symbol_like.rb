@@ -49,7 +49,7 @@ module SymbolMath
       s == self
     end
 
-    def evaluate(**values)
+    def evaluate(**_values)
       self
     end
 
@@ -74,7 +74,7 @@ module SymbolMath
     def taylor(symbol, terms = 5, point = 0)
       cur_func = self
       pos = Symbol[symbol] - point
-      (0..(terms - 1)).reduce(0) do |a, e|
+      (0..terms).reduce(0) do |a, e|
         func_eval = cur_func
         func_eval = cur_func.evaluate(x: point) if func_eval.is_a?(SymbolLike)
         term = pos**e * func_eval / Function.fact(e)
@@ -88,7 +88,7 @@ module SymbolMath
       []
     end
 
-    def reduce_symbol(symbol, count)
+    def reduce_symbol(_symbol, count)
       fail 'Unknown Symbol' unless symbol?(self)
       if count == 0
         self
@@ -105,7 +105,7 @@ module SymbolMath
       self_index = sort.index { |a| a >= self.class }
       other_index = sort.index { |a| a >= other.class }
       res = self_index <=> other_index
-      block_given? && !res || res == 0 ? yield : res
+      block_given? && res == 0 ? yield : res
     end
 
     # could be better..

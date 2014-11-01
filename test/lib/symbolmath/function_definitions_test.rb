@@ -14,7 +14,7 @@ describe SymbolMath::FunctionDefinition do
     build { tanh(x) }.evaluate(x: 1).must_be_within_delta((ex - mex) / (ex + mex), 10**-8)
     build { sin(x) }.evaluate(x: 0).must_be_within_delta(0, 10**-8)
     build { cos(x) }.evaluate(x: 0).must_be_within_delta(1, 10**-8)
-    build { fact(x) }.evaluate(x: Rational(3,2)).must_be_within_delta(Math.sqrt(Math::PI), 10**-8)
+    build { fact(x) }.evaluate(x: Rational(3, 2)).must_be_within_delta(Math.sqrt(Math::PI), 10**-8)
   end
 
   it 'can do complex trigonometric' do

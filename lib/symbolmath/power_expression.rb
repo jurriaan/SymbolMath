@@ -11,6 +11,7 @@ module SymbolMath
     def initialize(base, exponent)
       @base = base
       @exponent = exponent
+      super()
     end
 
     def evaluate(**values)

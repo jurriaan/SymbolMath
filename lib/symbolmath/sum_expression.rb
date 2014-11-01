@@ -6,7 +6,7 @@ module SymbolMath
       self.elements = group_elements.map do |element, count|
         if count == 0
           next
-        elsif element == Numeric
+        elsif Numeric == element
           count unless count == 0
         elsif element.is_a?(RationalExpression)
           element.x = count

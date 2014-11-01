@@ -23,9 +23,10 @@ require 'symbolmath/power_expression'
 module SymbolMath
   Infinity = BigDecimal::INFINITY
   NaN = BigDecimal::NAN
-  class << self
-    def expr(&block)
-      Expression.build(&block)
-    end
+
+  module_function
+
+  def expr(&block)
+    Expression.build(&block)
   end
 end

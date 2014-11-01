@@ -9,6 +9,7 @@ module SymbolMath
     def initialize(x = nil, y = nil)
       @x = x
       @y = y
+      super()
     end
 
     def evaluate(**values)

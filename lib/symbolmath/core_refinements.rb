@@ -15,7 +15,7 @@ module SymbolMath
       true
     end
 
-    def fdiff(symbol)
+    def fdiff(_symbol)
       0
     end
 

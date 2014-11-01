@@ -30,7 +30,7 @@ module SymbolMath
   Function.define :identity do |x|
     x
   end
-  Function.identity.derivative = ->(x) { 1 }
+  Function.identity.derivative = ->(_x) { 1 }
   Function.define :fact, display_as: '%s!' do |x|
     if x.is_a?(Integer) && x >= 0
       (1..x).reduce(:*) || 1

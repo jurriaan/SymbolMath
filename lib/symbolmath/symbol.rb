@@ -2,7 +2,7 @@ module SymbolMath
   class Symbol < SymbolLike
     SYMBOLMAP = {
       /(.*)\!$/ => ->(res) { Function.fact Symbol[res] },
-      /pi/i => ->(res) { new :π }
+      /pi/i => ->(_res) { new :π }
     }
 
     SYMBOLMAP.default_proc = lambda do |hash, lookup|
@@ -28,7 +28,7 @@ module SymbolMath
     end
 
     def inspect
-      "<Symbol: #{name}>"
+      "<Symbol: #{self}>"
     end
 
     def symbol?(symbol)
@@ -44,11 +44,7 @@ module SymbolMath
     end
 
     def evaluate(**values)
-      if values.include? name
-        values[name]
-      else
-        self
-      end
+      values.include?(name) ? values[name] : self
     end
 
     def fdiff(symbol)

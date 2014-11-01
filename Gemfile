@@ -7,6 +7,6 @@ group :test do
   gem 'minitest'
   gem 'coveralls', require: false
   gem 'rake'
-  gem 'rubocop', '~> 0.19'
+  gem 'rubocop', '~> 0.27'
   gem 'simplecov', require: false
 end
